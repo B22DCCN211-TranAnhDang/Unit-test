@@ -1,0 +1,111 @@
+﻿yarn run v1.22.22
+$ D:\library-management-system-main\library-management-system-main\node_modules\.bin\jest tests/unit/auth.security.test.ts tests/unit/route.security.test.ts --runInBand --coverage --collectCoverageFrom=src/middleware/auth.middleware.ts --collectCoverageFrom=src/app/api/auth/logout/route.ts --collectCoverageFrom=src/app/api/reviews/route.ts
+node.exe : FAIL tests/unit/route.security.test.ts
+At C:\nvm4w\nodejs\yarn.ps1:16 char:5
++     & "$basedir/node$exe"  "$basedir/node_modules/yarn/bin/yarn.js" $ ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (FAIL tests/unit/route.security.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ● Console
+
+    console.error
+      POST /api/auth/logout Error: Error: DB unavailable
+          at Object.<anonymous> 
+(D:\library-management-system-main\library-management-system-main\tests\unit\route.security.test.ts:125:38)
+          at Promise.finally.completed (D:\library-management-system-main\library-management-system-main\node_modules\j
+est-circus\build\jestAdapterInit.js:1557:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (D:\library-management-system-main\library-management-system-main\node_modules\jest-circ
+us\build\jestAdapterInit.js:1497:10)
+          at _callCircusTest (D:\library-management-system-main\library-management-system-main\node_modules\jest-circus
+\build\jestAdapterInit.js:1007:40)
+          at _runTest (D:\library-management-system-main\library-management-system-main\node_modules\jest-circus\build\
+jestAdapterInit.js:947:3)
+          at D:\library-management-system-main\library-management-system-main\node_modules\jest-circus\build\jestAdapte
+rInit.js:849:7
+          at _runTestsForDescribeBlock (D:\library-management-system-main\library-management-system-main\node_modules\j
+est-circus\build\jestAdapterInit.js:862:11)
+          at _runTestsForDescribeBlock (D:\library-management-system-main\library-management-system-main\node_modules\j
+est-circus\build\jestAdapterInit.js:857:11)
+          at run (D:\library-management-system-main\library-management-system-main\node_modules\jest-circus\build\jestA
+dapterInit.js:761:3)
+          at runAndTransformResultsToJestFormat (D:\library-management-system-main\library-management-system-main\node_
+modules\jest-circus\build\jestAdapterInit.js:1918:21)
+          at jestAdapter 
+(D:\library-management-system-main\library-management-system-main\node_modules\jest-circus\build\runner.js:101:19)
+          at runTestInternal 
+(D:\library-management-system-main\library-management-system-main\node_modules\jest-runner\build\index.js:275:16)
+          at runTest 
+(D:\library-management-system-main\library-management-system-main\node_modules\jest-runner\build\index.js:343:7)
+
+    [0m [90m 42 |[39m     [36mreturn[39m response[33m;[39m
+     [90m 43 |[39m   } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 44 |[39m     console[33m.[39merror([32m'POST /api/auth/logout 
+Error:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 45 |[39m
+     [90m 46 |[39m     [90m// Even if logout fails, clear the cookies[39m
+     [90m 47 |[39m     [36mconst[39m response [33m=[39m successResponse([36mnull[39m[33m,[39m [32m'Logout 
+successful'[39m)[33m;[39m[0m
+
+      at error (src/app/api/auth/logout/route.ts:44:13)
+      at Object.<anonymous> (tests/unit/route.security.test.ts:127:22)
+
+  ● Security Route Unit Tests › SE_08 should reject review creation when body.userId does not match authenticated user 
+id
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+    [0m [90m 181 |[39m     } [36mas[39m never)[33m;[39m
+     [90m 182 |[39m
+    [31m[1m>[22m[39m[90m 183 |[39m     expect(mockHandleRouteError)[33m.[39mtoHaveBeenCalled()[33m;[39m
+     [90m     |[39m                                  [31m[1m^[22m[39m
+     [90m 184 |[39m     
+expect(mockPrisma[33m.[39mreview[33m.[39mcreate)[33m.[39mnot[33m.[39mtoHaveBeenCalled()[33m;[39m
+     [90m 185 |[39m     expect(response)[33m.[39mtoEqual({
+     [90m 186 |[39m       context[33m:[39m [32m'POST /api/reviews'[39m[33m,[39m[0m
+
+      at Object.<anonymous> (tests/unit/route.security.test.ts:183:34)
+
+FAIL tests/unit/auth.security.test.ts
+  ● Security Middleware Unit Tests › SE_04 should reject an INACTIVE user during token authentication
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+    [0m [90m 121 |[39m     } [36mas[39m never)[33m;[39m
+     [90m 122 |[39m
+    [31m[1m>[22m[39m[90m 123 |[39m     
+expect(result[33m.[39msuccess)[33m.[39mtoBe([36mfalse[39m)[33m;[39m
+     [90m     |[39m                            [31m[1m^[22m[39m
+     [90m 124 |[39m     expect(result[33m.[39merror)[33m.[39mtoBe([32m'User not found or 
+inactive'[39m)[33m;[39m
+     [90m 125 |[39m   })[33m;[39m
+     [90m 126 |[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (tests/unit/auth.security.test.ts:123:28)
+
+---------------------|---------|----------|---------|---------|--------------------------------------------
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                          
+---------------------|---------|----------|---------|---------|--------------------------------------------
+All files            |    63.7 |       50 |   53.84 |    62.3 |                                            
+ app/api/auth/logout |     100 |    66.66 |     100 |     100 |                                            
+  route.ts           |     100 |    66.66 |     100 |     100 | 9-11                                       
+ app/api/reviews     |   44.28 |    35.71 |      50 |   44.28 |                                            
+  route.ts           |   44.28 |    35.71 |      50 |   44.28 | 19-114,131,139,142,145,158,168,178,225,230 
+ middleware          |   78.72 |    76.47 |      50 |   76.19 |                                            
+  auth.middleware.ts |   78.72 |    76.47 |      50 |   76.19 | 42,71,100,116-118,125,129,133,137,141      
+---------------------|---------|----------|---------|---------|--------------------------------------------
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 6 passed, 8 total
+Snapshots:   0 total
+Time:        1.958 s
+Ran all test suites matching tests/unit/auth.security.test.ts|tests/unit/route.security.test.ts.
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

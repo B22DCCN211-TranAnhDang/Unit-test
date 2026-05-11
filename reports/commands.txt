@@ -1,0 +1,1 @@
+﻿yarn jest tests/unit/validators.test.ts tests/unit/auth.service.login.test.ts --runInBand

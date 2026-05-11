@@ -1,0 +1,241 @@
+  console.log
+       ✓ Logic Check: PasswordUtils.compare khớp và sinh JWT thành công.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:60:15)
+
+  console.log
+       ✓ Logic Check: EmailUtils.isValid(email) trả về false. Chặn ngay tại entry point.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:68:15)
+
+  console.log
+       ✓ Logic Check: password.length === 0 ngắt luồng xử lý trước khi query DB.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:74:15)
+
+  console.log
+       ✓ Logic Check: findUnique trả về null. Ném UnauthorizedError để bảo mật thông tin.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:82:15)
+
+  console.log
+       ✓ Logic Check: Flag isDeleted = true chặn truy cập dù đúng password.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:90:15)
+
+  console.log
+       ✓ Logic Check: user.status !== ACTIVE ném lỗi nghiệp vụ "Account is inactive".
+
+      at Object.<anonymous> (tests/auth.service.test.ts:98:15)
+
+  console.log
+       ✓ Logic Check: PasswordUtils.compare() trả về false. Rollback login flow.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:107:15)
+
+  console.error
+       ✕ FAIL: Hệ thống chưa có cơ chế khóa tài khoản tạm thời sau nhiều lần nhập sai.
+
+    [0m [90m 132 |[39m     test([32m'AUTH_09: [SECURITY GAP] Chống Brute Force (Rate Limit)'[39m[33m,[39m () [33m=>[39m {
+     [90m 133 |[39m       [36mconst[39m hasRateLimit [33m=[39m [36mfalse[39m[33m;[39m 
+    [31m[1m>[22m[39m[90m 134 |[39m       console[33m.[39merror([32m'   ✕ FAIL: Hệ thống chưa có cơ chế khóa tài khoản tạm thời sau nhiều lần nhập sai.'[39m)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 135 |[39m       expect(hasRateLimit)[33m.[39mtoBe([36mtrue[39m)[33m;[39m 
+     [90m 136 |[39m     })[33m;[39m
+     [90m 137 |[39m[0m
+
+      at Object.<anonymous> (tests/auth.service.test.ts:134:15)
+
+  console.error
+       ✕ FAIL: Thiếu bảng LoginHistory để lưu IP/Thiết bị phục vụ truy vết.
+
+    [0m [90m 138 |[39m     test([32m'AUTH_10: [DATA GAP] Ghi nhật ký đăng nhập (Audit Log History)'[39m[33m,[39m () [33m=>[39m {
+     [90m 139 |[39m       [36mconst[39m hasAuditLog [33m=[39m [36mfalse[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 140 |[39m       console[33m.[39merror([32m'   ✕ FAIL: Thiếu bảng LoginHistory để lưu IP/Thiết bị phục vụ truy vết.'[39m)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 141 |[39m       expect(hasAuditLog)[33m.[39mtoBe([36mtrue[39m)[33m;[39m
+     [90m 142 |[39m     })[33m;[39m
+     [90m 143 |[39m[0m
+
+      at Object.<anonymous> (tests/auth.service.test.ts:140:15)
+
+  console.log
+       ✓ Logic Check: Verify Refresh Token cũ và cấp mới Access Token thành công.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:156:15)
+
+  console.log
+       ✓ Logic Check: Token ID được giải mã và xóa khỏi database để vô hiệu hóa session.
+
+      at Object.<anonymous> (tests/auth.service.test.ts:163:15)
+
+FAIL tests/auth.service.test.ts
+  AuthService Unit Tests - EXPERT QAPM REPORT
+    I. Chức năng Đăng nhập & Quản lý Session
+      √ AUTH_01: [SUCCESS] Đăng nhập thành công (JWT & Bcrypt Guard) (19 ms)
+      √ AUTH_02: [VALIDATION] Email sai định dạng (Regex Guard) (14 ms)
+      × AUTH_03: [VALIDATION] Trống mật khẩu (Input Guard) (7 ms)
+      × AUTH_04: [SECURITY] User không tồn tại (Identity Verification) (5 ms)
+      × AUTH_05: [DATA] Tài khoản bị xóa mềm (Soft-Delete Guard) (4 ms)
+      × AUTH_06: [POLICY] Tài khoản bị khóa Inactive (Status Enforcement) (4 ms)
+      × AUTH_07: [CRYPTO] Sai mật khẩu (Cryptographic Verification) (3 ms)
+      × AUTH_08: [SESSION] Remember Me (Session Persistence) (1 ms)
+      × AUTH_09: [SECURITY GAP] Chống Brute Force (Rate Limit) (4 ms)
+      × AUTH_10: [DATA GAP] Ghi nhật ký đăng nhập (Audit Log History) (3 ms)
+      √ AUTH_11: [TOKEN] Refresh Token Renewal (JWT Rotation) (1 ms)
+      √ AUTH_12: [SECURITY] Logout & Token Revocation (1 ms)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_03: [VALIDATION] Trống mật khẩu (Input Guard)
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Password is required"
+    Received message:   "Invalid email format"
+
+        [0m [90m 122 |[39m     [90m// Validate input[39m
+         [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+        [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+         [90m     |[39m             [31m[1m^[22m[39m
+         [90m 125 |[39m     }
+         [90m 126 |[39m
+         [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:75:32)
+      at Object.toThrow (node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> (tests/auth.service.test.ts:76:18)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_04: [SECURITY] User không tồn tại (Identity Verification)
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Invalid email or password"
+    Received message:   "Invalid email format"
+
+        [0m [90m 122 |[39m     [90m// Validate input[39m
+         [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+        [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+         [90m     |[39m             [31m[1m^[22m[39m
+         [90m 125 |[39m     }
+         [90m 126 |[39m
+         [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:83:32)
+      at Object.toThrow (node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> (tests/auth.service.test.ts:84:18)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_05: [DATA] Tài khoản bị xóa mềm (Soft-Delete Guard)
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Invalid email or password"
+    Received message:   "Invalid email format"
+
+        [0m [90m 122 |[39m     [90m// Validate input[39m
+         [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+        [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+         [90m     |[39m             [31m[1m^[22m[39m
+         [90m 125 |[39m     }
+         [90m 126 |[39m
+         [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:91:32)
+      at Object.toThrow (node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> (tests/auth.service.test.ts:92:18)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_06: [POLICY] Tài khoản bị khóa Inactive (Status Enforcement)
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Account is inactive"
+    Received message:   "Invalid email format"
+
+        [0m [90m 122 |[39m     [90m// Validate input[39m
+         [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+        [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+         [90m     |[39m             [31m[1m^[22m[39m
+         [90m 125 |[39m     }
+         [90m 126 |[39m
+         [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:99:32)
+      at Object.toThrow (node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> (tests/auth.service.test.ts:100:18)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_07: [CRYPTO] Sai mật khẩu (Cryptographic Verification)
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Invalid email or password"
+    Received message:   "Invalid email format"
+
+        [0m [90m 122 |[39m     [90m// Validate input[39m
+         [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+        [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+         [90m     |[39m             [31m[1m^[22m[39m
+         [90m 125 |[39m     }
+         [90m 126 |[39m
+         [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:108:32)
+      at Object.toThrow (node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> (tests/auth.service.test.ts:109:18)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_08: [SESSION] Remember Me (Session Persistence)
+
+    ValidationError: Invalid email format
+
+    [0m [90m 122 |[39m     [90m// Validate input[39m
+     [90m 123 |[39m     [36mif[39m ([33m![39m[33mEmailUtils[39m[33m.[39misValid(email)) {
+    [31m[1m>[22m[39m[90m 124 |[39m       [36mthrow[39m [36mnew[39m [33mValidationError[39m([32m'Invalid email format'[39m)[33m;[39m
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 125 |[39m     }
+     [90m 126 |[39m
+     [90m 127 |[39m     [36mif[39m ([33m![39mpassword [33m||[39m password[33m.[39mlength [33m===[39m [35m0[39m) {[0m
+
+      at Function.login (src/services/auth.service.ts:124:13)
+      at Object.<anonymous> (tests/auth.service.test.ts:119:25)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_09: [SECURITY GAP] Chống Brute Force (Rate Limit)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    [0m [90m 133 |[39m       [36mconst[39m hasRateLimit [33m=[39m [36mfalse[39m[33m;[39m 
+     [90m 134 |[39m       console[33m.[39merror([32m'   ✕ FAIL: Hệ thống chưa có cơ chế khóa tài khoản tạm thời sau nhiều lần nhập sai.'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 135 |[39m       expect(hasRateLimit)[33m.[39mtoBe([36mtrue[39m)[33m;[39m 
+     [90m     |[39m                            [31m[1m^[22m[39m
+     [90m 136 |[39m     })[33m;[39m
+     [90m 137 |[39m
+     [90m 138 |[39m     test([32m'AUTH_10: [DATA GAP] Ghi nhật ký đăng nhập (Audit Log History)'[39m[33m,[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (tests/auth.service.test.ts:135:28)
+
+  ● AuthService Unit Tests - EXPERT QAPM REPORT › I. Chức năng Đăng nhập & Quản lý Session › AUTH_10: [DATA GAP] Ghi nhật ký đăng nhập (Audit Log History)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    [0m [90m 139 |[39m       [36mconst[39m hasAuditLog [33m=[39m [36mfalse[39m[33m;[39m
+     [90m 140 |[39m       console[33m.[39merror([32m'   ✕ FAIL: Thiếu bảng LoginHistory để lưu IP/Thiết bị phục vụ truy vết.'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 141 |[39m       expect(hasAuditLog)[33m.[39mtoBe([36mtrue[39m)[33m;[39m
+     [90m     |[39m                           [31m[1m^[22m[39m
+     [90m 142 |[39m     })[33m;[39m
+     [90m 143 |[39m
+     [90m 144 |[39m     [90m// CÁC CASE BỔ SUNG VỀ TOKEN MANAGEMENT[39m[0m
+
+      at Object.<anonymous> (tests/auth.service.test.ts:141:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 4 passed, 12 total
+Snapshots:   0 total
+Time:        1.129 s
+Ran all test suites matching tests/auth.service.test.ts.
