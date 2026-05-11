@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Unit-test
-Đảm bảo chất lượng phần 
-=======
 Library Management System
 
 A monorepo-style Next.js application that includes both the frontend (UI) and backend (API routes) in a single codebase. Backend lives under `src/app/api` and is served by the same Next.js server.
@@ -151,4 +147,3 @@ By default the app listens on port 3000. Ensure the same `.env` is available in 
   - Ensure the `.env` file is in the project root directory
   - Run the seed command from the project root directory
   - Restart your terminal/shell after creating `.env`
->>>>>>> ae82246 (đẩy commit)
